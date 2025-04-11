@@ -1,11 +1,12 @@
 const URLMain ="https://fakestoreapi.com/products/";
 const main= document.getElementsByTagName("main").item(0);
+const ulMenu= document.getElementById("ulMenu");
 
 function getData(){
-    const options ={"metod":"GET"};
-    fetch(URLMain)
+    const options ={"method":"GET"};
+    fetch(URLMain, options)
     .then((response)=>{
-        console.log(response,options);
+        //console.log(response,options);
         //convierte la respuesta en JSON
         response.json().then((res)=>{
             // console.log(res.length);//20 productos
@@ -24,6 +25,34 @@ function getData(){
 
 }//getData
 
+function getCategories(){
+    const options ={"method":"GET"};
+    fetch(URLMain +"categories/", options)
+    .then((response)=>{
+        console.log(response);
+        //convierte la respuesta en JSON
+        response.json().then((res)=>{
+            // console.log("categories": res);//
+            res.forEach((cat)=>{
+                ulMenu.insertAdjacentHTML("afterbegin", `
+                    <li><a class="dropdown-item" href="#">${cat}</a></li>
+                    `);
+            });
+
+        }); 
+    })
+    .catch((err)=>{
+        main.insertAdjacentElement("beforeend",
+            `<div class="alert alert-danger" role="alert">
+            ${err.message}
+            </div>)
+            `);
+
+    });
+
+}//getCategories
+
+getCategories();
 getData();
 
 function createCards(prods){
