@@ -34,14 +34,15 @@ function createCards(prods){
     
     prods.forEach((d) => {
         //main.insertAdjacentHTML("beforebegin", `hola ${prods[d].title}`);
-        main.insertAdjacentHTML("beforebegin", 
+        main.insertAdjacentHTML("beforeend", 
             // titulo: ${d.title}\n 
             // description : ${d.description}\n
             // category: ${d.category}\n
             // image: ${d.image}\n
             // ------------------------\n
-            `
-            <div class="card" style="width: 18rem; style=border-color:black border-width: medium">
+            //<div class="card" style="width: 18rem; style=border-color:black border-width: medium">
+            
+            `<div class="card col-md-4 mb-4">
                 <img src="${d.image}" class="card-img-top" alt="...">
             <div class="card-body">
             <h5 class="card-title">${d.title}</h5>
@@ -58,5 +59,6 @@ function createCards(prods){
 
         
     });
+
 
 }//createcards
